@@ -1,0 +1,22 @@
+body {
+    height: 100%;
+    background-image: linear-gradient(135deg, #ffffff 60%, #f2f2f2 100%);
+}
+
+.btn-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.card-with-shadow {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.bloody-mary-gradient {
+    background-image: linear-gradient(120deg, #ff512f 0%, #dd2476 100%);
+}
+
+svg path,
+svg rect {
+    fill: #333;
+}

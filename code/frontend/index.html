@@ -1,0 +1,99 @@
+<html>
+<head>
+    <title>My Super Service</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/my.js"></script>
+    <link rel="stylesheet" href="css/my.css">
+
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center mb-5">My Super Service</h2>
+            <ul class="nav nav-fill">
+                <a class="nav-item" href="https://github.com/gaborvecsei">Github</a>
+                <a class="nav-item" href="https://gaborvecsei.wordpress.com/">Blog</a>
+                <a class="nav-item" href="https://www.linkedin.com/in/gaborvecsei/">LinkedIn</a>
+                <a class="nav-item" href="https://twitter.com/gawesomebe">Twitter</a>
+            </ul>
+            <hr class="mb-5">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <span class="anchor" id="formPrediction"></span>
+                    <div class="card  card-with-shadow card-outline-secondary bloody-mary-gradient">
+                        <div class="card-header">
+                            <h3 class="mb-0 text-white">Service</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="predictionForm" novalidate=""
+                                  method="POST">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">#</span>
+                                    </div>
+                                    <input id="numberOfCharsInput" class="form-control" placeholder="number of characters"
+                                           required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input id="apiKeyInput" class="form-control" placeholder="Api Key"
+                                           required>
+                                </div>
+                                <button type="button" class="btn btn-dark btn-lg float-right" id="buttonPredict">
+                                    Go
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal waiting fade" id="resultsModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" id="resultModalHeader">
+                        <h4 class="modal-title" id="resultModalTitle">Results</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="resultModalServiceResult"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row fixed-bottom">
+        <div class="col-md-12">
+            <hr>
+            <p class="text-center">Gabor Vecsei<br>
+                <a class="small text-info d-inline-block" href="https://www.github.com/gaborvecsei"><i
+                        class="fa fa-github"></i> Github</a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
