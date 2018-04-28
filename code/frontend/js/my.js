@@ -36,7 +36,7 @@ $(document).ready(function () {
 });
 
 function sendServiceRequest(apiKey, size) {
-    var url = "http://localhost:8080/detect";
+    var url = "http://localhost:8080/microservice/sample_service";
     var requestBody = JSON.stringify({api_key: apiKey, size: size});
 
     var request = $.ajax({
