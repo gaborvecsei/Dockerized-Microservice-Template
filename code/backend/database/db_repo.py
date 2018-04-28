@@ -1,7 +1,7 @@
 import os
 from binascii import hexlify
 from datetime import datetime
-
+import numpy as np
 from database import db_models, db
 
 
@@ -20,14 +20,24 @@ def init_api_key_object(api_key: str = None) -> db_models.ApiKey:
     return new_api_key
 
 
-def create_user(first_name: str, last_name: str, email: str, api_key: str = None) -> None:
+def create_user(first_name: str, last_name: str, email: str, api_key: str = None,
+                generate_random_units_for_testing: bool = False) -> None:
     new_api_key = init_api_key_object(api_key)
+
+    available_units = 0
+    used_units = 0
+
+    if generate_random_units_for_testing:
+        # This is only for testing, it should be removed
+        available_units = np.random.randint(10, 100)
+        used_units = np.random.randint(10, 100)
+
     new_user = db_models.User(first_name=first_name,
                               last_name=last_name,
                               email=email,
                               date_signed_up=datetime.now(),
-                              available_units=0,
-                              used_units=0,
+                              available_units=available_units,
+                              used_units=used_units,
                               api_key=new_api_key, )
     db.db_session.add(new_user)
     db.db_session.commit()

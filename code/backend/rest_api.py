@@ -17,6 +17,11 @@ app.logger.setLevel(logging.INFO)
 
 
 def not_found_error(msg):
+    """
+    This is used for any type of error right now
+    (TODO)
+    """
+
     status_code = 404
     message = {
         'status': status_code,
@@ -49,7 +54,10 @@ def add_test_users(nb_of_users: int):
     nb_of_users = int(nb_of_users)
 
     for i in range(nb_of_users):
-        db_repo.create_user("Test", "User{0}".format(i), "just{0}@test.com".format(i))
+        db_repo.create_user("Test",
+                            "User{0}".format(i),
+                            "just{0}@test.com".format(i),
+                            generate_random_units_for_testing=True)
 
     app.logger.info("Test users are created")
 
@@ -58,16 +66,28 @@ def add_test_users(nb_of_users: int):
 
 @app.route("/microservice/sample_service", methods=["POST"])
 def use_sample_service():
+    """
+    Sample endpoint for the service
+    """
+
     req_json = request.get_json()
 
     try:
         # For authentication
         api_key_str = req_json["api_key"]
         # For the service
-        size = int(req_json["size"])
+        size = req_json["size"]
     except KeyError:
         app.logger.error("Could not find the necessary keys in the request's body")
         return not_found_error("Required keys are not found in POST's body")
+
+    try:
+        size = int(size)
+    except Exception as e:
+        return not_found_error("Wrong input type. It should be A Number.")
+
+    if size <= 0:
+        return not_found_error("Number input should be greater than 0")
 
     user = db_repo.find_user_by_api_key(api_key_str)
 
