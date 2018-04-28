@@ -1,0 +1,4 @@
+numpy==1.12.1
+flask==0.12.2
+sqlalchemy==1.2.6
+psycopg2==2.7.4

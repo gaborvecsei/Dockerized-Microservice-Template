@@ -1,0 +1,5 @@
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=admin
+POSTGRES_DB=my_db
+APP_SECRET_KEY="this_is_my_super_secret"
+DB_PORT=5432

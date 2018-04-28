@@ -1,0 +1,60 @@
+version: '3'
+services:
+  microservice:
+    image: my_microservice:latest
+    container_name: my-microservice
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - env_file
+    expose:
+      - 5000
+    volumes:
+      - ./code:/code
+    entrypoint:
+      - python
+      - /code/backend/rest_api.py
+    networks:
+      - postgres_network
+      - rest_api_network
+    depends_on:
+      - db
+  db:
+    image: postgres:10.3-alpine
+    container_name: postgres-db
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    env_file:
+      - env_file
+    networks:
+      - postgres_network
+  db_explorer:
+    image: sosedoff/pgweb:0.9.11
+    container_name: db-explorer
+    env_file:
+      - env_file
+    ports:
+      - 8081:8081
+    networks:
+      - postgres_network
+    depends_on:
+      - db
+  nginx:
+    image: nginx:1.13-alpine
+    container_name: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./code/frontend:/code/frontend
+    networks:
+      - rest_api_network
+    depends_on:
+      - microservice
+
+networks:
+  postgres_network:
+    driver: bridge
+  rest_api_network:
+    driver: bridge
